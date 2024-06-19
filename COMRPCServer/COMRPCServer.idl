@@ -1,0 +1,38 @@
+// COMRPCServer.idl : IDL source for COMRPCServer
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (COMRPCServer.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(fd1bf1c1-efa6-4650-acb1-2d8661fbefaf),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IFileTransfer : IDispatch
+{
+	[id(1), helpstring("method SendFile")] HRESULT SendFile([in] BSTR filePath);
+	[id(2), helpstring("method ReceiveFile")] HRESULT ReceiveFile([in] BSTR filePath);
+};
+[
+	uuid(6e039750-d4c8-4b15-81aa-b91567c2c027),
+	version(1.0),
+]
+library COMRPCServerLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(ae661981-a6e4-4e43-82e3-ea8acf46342c)
+	]
+	coclass FileTransfer
+	{
+		[default] interface IFileTransfer;
+	};
+};
+
+import "shobjidl.idl";

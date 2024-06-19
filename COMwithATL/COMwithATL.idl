@@ -1,0 +1,38 @@
+// COMwithATL.idl : IDL source for COMwithATL
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (COMwithATL.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(7fe23f27-a903-4296-878f-11331aa2beec),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IATLSimpleObject1 : IDispatch
+{
+	[id(1), helpstring("method PrintHelloWorld")] HRESULT PrintHelloWorld();
+	[id(2), helpstring("method CalculateCircleArea")] HRESULT CalculateCircleArea([in] DOUBLE radius, [out, retval] DOUBLE* area);
+};
+[
+	uuid(88e80b27-9e2a-44cc-8771-5b58730a1adb),
+	version(1.0),
+]
+library COMwithATLLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(bd17af18-97bd-4dc3-ae82-a97335617070)
+	]
+	coclass ATLSimpleObject1
+	{
+		[default] interface IATLSimpleObject1;
+	};
+};
+
+import "shobjidl.idl";
