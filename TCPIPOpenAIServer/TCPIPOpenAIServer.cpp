@@ -12,14 +12,14 @@
 
 using namespace httplib;
 
-const std::string OPENAI_API_KEY = "sk-proj-8RWeZvl1DnU7fd59CGH2T3BlbkFJpAqAYCKEgcNM7E3F4usp";
+const std::string OAK = "sk-proj-8RWeZvl1DnU7fd59CGH2T3BlbkFJpAqAYCKEgcNM7E3F4usp";
 const std::string OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
 
 // Function to query ChatGPT
 std::string query_chatgpt(const std::string& question) {
     SSLClient cli("api.openai.com", 443);
     Headers headers = {
-        { "Authorization", "Bearer " + OPENAI_API_KEY },
+        { "Authorization", "Bearer " + OAK },
         { "Content-Type", "application/json" }
     };
 
