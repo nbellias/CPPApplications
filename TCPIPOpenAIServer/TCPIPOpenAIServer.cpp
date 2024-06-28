@@ -36,12 +36,12 @@ std::string query_chatgpt(const std::string& question) {
     };
 
     std::string body = 
-        "{ \"model\": \"gpt-3.5-turbo\", \"messages\": [ { \"role\": \"system\", \"content\": \"You are a helpful assistant.\" }, { \"role\": \"user\", \"content\": \"" + question + "\" } ] }";
+        "{ \"model\": \"gpt-3.5-turbo-16k\", \"messages\": [ { \"role\": \"system\", \"content\": \"You are a helpful assistant.\" }, { \"role\": \"user\", \"content\": \"" + question + "\" } ] }";
 
     auto res = cli.Post("/v1/chat/completions", headers, body, "application/json");
 
     if (res && res->status == 200) {
-        auto result = res->body.find("\"text\":");
+        auto result = res->body.find("\"content\":");
         if (result != std::string::npos) {
             std::string response = res->body.substr(result + 8);
             return response;
